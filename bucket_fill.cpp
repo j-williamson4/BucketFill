@@ -53,9 +53,9 @@ int main()
     cout << "Enter a row: ";
 	cin >> rowInput;
     cout << "Enter a column: ";
-    cin >> colInput;   
+        cin >> colInput;   
     cout << "Enter a color: ";
-    cin >> colorInput;
+        cin >> colorInput;
 	bucket_fill( imageArr, rowInput, colInput, colorInput, 
 	              imageArr[rowInput][colInput].currentColor); //last parameter is oldColor
 	cout << '\n';
@@ -80,24 +80,25 @@ int main()
 
 void bucket_fill(Pixel arr[][COL], int x, int y, char newColor, char oldColor)
 {
-	if ( arr[x][y].currentColor == newColor )   // if origin color same as new color
-		return;
-	if ( arr[x][y].currentColor != oldColor )   //if neighbors color is same as origin
-		return;
-	if (x < 0 || x >= ROW || y < 0 || y >= COL) //bounds checking
-		return;
-	else
+    if ( arr[x][y].currentColor == newColor )   // if origin color same as new color
+	return;
+    if ( arr[x][y].currentColor != oldColor )   //if neighbors color is same as origin
+	return;
+    if (x < 0 || x >= ROW || y < 0 || y >= COL) //bounds checking
+	return;
+    else
     {   
+      // change point to new color
        arr[x][y].currentColor = newColor;
-     // recursively check origin pixel's neighbors  
-	   bucket_fill(arr, x-1, y-1, newColor, oldColor); // down1 left1
-	   bucket_fill(arr, x-1, y, newColor, oldColor);   // down1
-     bucket_fill(arr, x-1, y+1, newColor, oldColor); // down1 right1 
-	   bucket_fill(arr, x, y-1, newColor, oldColor);   // left1
-	   bucket_fill(arr, x, y+1, newColor, oldColor);   // right1
-	   bucket_fill(arr, x+1, y-1, newColor, oldColor); // up1 left1
-	   bucket_fill(arr, x+1, y, newColor, oldColor);   // up1 
-	   bucket_fill(arr, x+1, y+1, newColor, oldColor); // up1 right1
+      // recursively check origin pixel's neighbors  
+       bucket_fill(arr, x-1, y-1, newColor, oldColor); // down1 left1
+       bucket_fill(arr, x-1, y, newColor, oldColor);   // down1
+       bucket_fill(arr, x-1, y+1, newColor, oldColor); // down1 right1 
+       bucket_fill(arr, x, y-1, newColor, oldColor);   // left1
+       bucket_fill(arr, x, y+1, newColor, oldColor);   // right1
+       bucket_fill(arr, x+1, y-1, newColor, oldColor); // up1 left1
+       bucket_fill(arr, x+1, y, newColor, oldColor);   // up1 
+       bucket_fill(arr, x+1, y+1, newColor, oldColor); // up1 right1
     }
 }
 
